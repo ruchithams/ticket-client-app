@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/styles.css';
 
-const serverURL = 'https://ticket-server-sc6x.onrender.com/';
+const serverURL = 'https://ticket-server-sc6x.onrender.com';
 //const serverURL = 'http://127.0.0.1:3001';
 
 interface Ticket {
