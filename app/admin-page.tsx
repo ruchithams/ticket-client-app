@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import './css/styles.css';
 
+const serverURL = 'https://ticket-server-sc6x.onrender.com/';
+//const serverURL = 'http://127.0.0.1:3001';
+
 interface Ticket {
   id: number;
   username: string;
@@ -33,7 +36,7 @@ const AdminPage: React.FC = () => {
     // Fetch tickets from the database and update state
     const fetchTickets = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:3001/api/tickets');
+        const response = await fetch(serverURL+'/api/tickets');
         if (response.ok) {
             const data = await response.json();
             setTickets(data);
@@ -62,7 +65,7 @@ const AdminPage: React.FC = () => {
   const handleUpdate = async (id: number, newResponse: string) => {
     try {
         // Make API call to update ticket with new response and status
-        await fetch('http://127.0.0.1:3001/api/update-ticket', {
+        await fetch(serverURL+'/api/update-ticket', {
           method: 'PUT',
           headers: {
             Accept: 'application/json',
@@ -87,7 +90,7 @@ const AdminPage: React.FC = () => {
   const handleResolve = async (id: number, newResponse: string) => {
     try {
         // Make API call to update ticket status to resolved
-        await fetch('http://127.0.0.1:3001/api/update-ticket', {
+        await fetch(serverURL+'/api/update-ticket', {
           method: 'PUT',
           headers: {
             Accept: 'application/json',

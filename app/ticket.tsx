@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 
+const serverURL = 'https://ticket-server-sc6x.onrender.com/';
+//const serverURL = 'http://127.0.0.1:3001';
+
 const SubmitTicketForm: React.FC = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -34,7 +37,7 @@ const SubmitTicketForm: React.FC = () => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:3001/api/ticket', {
+      const response = await fetch(serverURL+'/api/ticket', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
