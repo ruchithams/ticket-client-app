@@ -27,6 +27,7 @@ const formatDate = (dateString: string): string => {
 
 const AdminPage: React.FC = () => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch tickets from the database and update state
@@ -41,6 +42,7 @@ const AdminPage: React.FC = () => {
         }
       } catch (error) {
         console.error('Error fetching tickets:', error);
+        setError('Failed to submit ticket. Please try again later.');
       }
     };
 
@@ -77,7 +79,7 @@ const AdminPage: React.FC = () => {
         );
       } catch (error) {
         console.error('Error updating ticket:', error);
-        // Handle error
+        setError('Failed to submit ticket. Please try again later.');
       }
   };
 
@@ -102,12 +104,12 @@ const AdminPage: React.FC = () => {
         );
       } catch (error) {
         console.error('Error resolving ticket:', error);
-        // Handle error
+        setError('Failed to submit ticket. Please try again later.');
       }
   };
-
   return (
     <div style={{ width: '80%', margin: '0 auto' }}>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <table className="table">
         <thead>
           <tr>
@@ -165,5 +167,4 @@ const AdminPage: React.FC = () => {
     </div>
   );
 };
-
 export default AdminPage;

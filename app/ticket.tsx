@@ -1,8 +1,6 @@
 "use client"; // This is a client component 
 
 import React, { useState } from 'react';
-import axios from 'axios';
-import { submitTicket } from './api/submit-ticket';
 
 const SubmitTicketForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,13 +8,12 @@ const SubmitTicketForm: React.FC = () => {
     email: '',
     description: ''
   });
+
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,16 +33,7 @@ const SubmitTicketForm: React.FC = () => {
       return;
     }
 
-     // Create a new FormData object
-    //  const formDataToSend = new FormData();
-    //  formDataToSend.append('username', formData.username);
-    //  formDataToSend.append('email', formData.email);
-    //  formDataToSend.append('description', formData.description);
-
     try {
-      // Make API request using the function exported from submit-ticket.ts
-      //const response = await submitTicket(formDataToSend);
-      // const response = await axios.post('http://127.0.0.1:3000/api/proxy', formData);
       const response = await fetch('http://127.0.0.1:3001/api/ticket', {
         method: 'POST',
         headers: {
